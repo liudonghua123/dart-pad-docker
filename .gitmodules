@@ -1,0 +1,6 @@
+[submodule "dart-services"]
+	path = dart-services
+	url = https://github.com/dart-lang/dart-services.git
+[submodule "dart-pad"]
+	path = dart-pad
+	url = https://github.com/dart-lang/dart-pad.git

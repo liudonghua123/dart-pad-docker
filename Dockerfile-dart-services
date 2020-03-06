@@ -1,0 +1,13 @@
+FROM google/dart
+
+# install redis
+RUN apt-get update -y
+RUN apt-get install -y redis-server
+
+# install the dependence
+COPY dart-services/pubspec.yaml /dart-services/pubspec.yaml
+WORKDIR /dart-services
+RUN pub get
+
+# install grinder globally
+RUN pub global activate grinder
