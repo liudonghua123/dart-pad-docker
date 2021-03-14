@@ -1,13 +1,41 @@
 FROM google/dart
 
 # install redis
-RUN apt-get update -y
-RUN apt-get install -y redis-server
+RUN apt update -y
+RUN apt install -y redis-server protobuf-compiler zip unzip
+#RUN service snapd start
+#RUN snap install protobuf --classic
 
 # install the dependence
-COPY dart-services/pubspec.yaml /dart-services/pubspec.yaml
+COPY dart-services /dart-services
 WORKDIR /dart-services
-RUN pub get
+
+# setup mirror for speedup
+ENV PUB_HOSTED_URL=https://mirrors.tuna.tsinghua.edu.cn/dart-pub
+ENV FLUTTER_STORAGE_BASE_URL=https://mirrors.tuna.tsinghua.edu.cn/flutter
+#ENV PUB_HOSTED_URL=https://pub.flutter-io.cn
+#ENV FLUTTER_STORAGE_BASE_URL=https://storage.flutter-io.cn
+
+RUN pub get -v
 
 # install grinder globally
+# see more on https://github.com/dart-lang/dart-services
+# getting set up
 RUN pub global activate grinder
+RUN pub global activate protoc_plugin
+# initialize flutter
+# speedup github clone
+RUN cd / && git config --global url."https://hub.fastgit.org".insteadOf https://github.com
+#RUN dart pub get
+RUN dart run tool/update_sdk.dart
+
+# remove duplicated await SdkManager.sdk.init();
+RUN sed -i 's/await/\/\/await/g' bin/server_dev.dart
+
+CMD []
+
+# ignore some tests when run grind deploy
+#RUN grind deploy
+RUN grind sdk-init update-docker-version generate-protos
+
+ENTRYPOINT grind serve
