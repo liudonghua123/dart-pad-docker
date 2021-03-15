@@ -31,13 +31,13 @@ RUN pub global activate protoc_plugin
 # initialize flutter
 RUN dart run tool/update_sdk.dart
 
-# remove duplicated await SdkManager.sdk.init();
-RUN sed -i 's,await,//await,g' bin/server_dev.dart
-
 CMD []
 
-# ignore some tests when run grind deploy
-#RUN grind deploy
-RUN grind sdk-init update-docker-version generate-protos
+RUN grind deploy
 
-ENTRYPOINT grind serve
+# ignore repeated await SdkManager.sdk.init(), already in deploy-sdkInit
+RUN sed -i 's,await,//await,g' bin/server_dev.dart
+
+# ignore repeated buildStorageArtifacts
+# ENTRYPOINT grind serve
+ENTRYPOINT dart bin/server_dev.dart --port 8082
