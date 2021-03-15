@@ -4,6 +4,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile-dart-pad
+    image: liudonghua123/dart-pad
     networks:
       - nginx-proxy
     ports:
@@ -16,6 +17,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile-dart-services
+    image: liudonghua123/dart-services
     networks:
       - nginx-proxy
     ports:
