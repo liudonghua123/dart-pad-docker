@@ -38,6 +38,7 @@ jobs:
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
 
       - name: Build and push dart-pad
+        id: docker_build-dart-pad
         uses: docker/build-push-action@v2
         with:
           file: Dockerfile-dart-pad
@@ -45,9 +46,10 @@ jobs:
           tags: liudonghua123/dart-pad:latest,liudonghua123/dart-pad:${{ steps.branch_name.outputs.SOURCE_NAME }}
 
       - name: Image digest of dart-pad
-        run: echo ${{ steps.docker_build.outputs.digest }}
+        run: echo ${{ steps.docker_build-dart-pad.outputs.digest }}
 
       - name: Build and push dart-services
+        id: docker_build-dart-services
         uses: docker/build-push-action@v2
         with:
           file: Dockerfile-dart-services
@@ -55,7 +57,7 @@ jobs:
           tags: liudonghua123/dart-services:latest,liudonghua123/dart-services:${{ steps.branch_name.outputs.SOURCE_NAME }}
 
       - name: Image digest of dart-services
-        run: echo ${{ steps.docker_build.outputs.digest }}
+        run: echo ${{ steps.docker_build-dart-services.outputs.digest }}
 
       - name: Update repo description
         uses: peter-evans/dockerhub-description@v2
