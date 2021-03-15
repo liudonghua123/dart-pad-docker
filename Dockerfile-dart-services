@@ -38,6 +38,9 @@ RUN grind deploy
 # ignore repeated await SdkManager.sdk.init(), already in deploy-sdkInit
 RUN sed -i 's,await,//await,g' bin/server_dev.dart
 
+# try to fix flutter-sdk/version missing?
+RUN grind sdk-init
+
 # ignore repeated buildStorageArtifacts
 # ENTRYPOINT grind serve
 ENTRYPOINT dart bin/server_dev.dart --port 8082
