@@ -8,15 +8,20 @@ RUN apt-get install -y nodejs
 # install vulcanize
 RUN npm i -g vulcanize
 
-# install the dependence
 COPY dart-pad /dart-pad
+
 WORKDIR /dart-pad
-ENV PUB_HOSTED_URL="https://mirrors.tuna.tsinghua.edu.cn/dart-pub"
+
+# speedup pub get
+#ENV PUB_HOSTED_URL="https://mirrors.tuna.tsinghua.edu.cn/dart-pub"
+
+# install the dependence
 RUN pub get
 
 # serve as 0.0.0.0 instead of localhost
 RUN sed -i 's/localhost/0.0.0.0/g' bin/serve.dart
 RUN sed -i 's/localhost:8000/0.0.0.0:8000/g' tool/grind.dart
+
 # fix grind serve-custom-backend replace issue
 RUN sed -i "s,'https://dart-services.appspot.com',RegExp(r'https://v1.api.dartpad.dev|https://nullsafety.api.dartpad.dev'),g" tool/grind.dart
 
