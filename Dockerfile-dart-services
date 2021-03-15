@@ -30,7 +30,7 @@ RUN cd / && git config --global url."https://hub.fastgit.org".insteadOf https://
 RUN dart run tool/update_sdk.dart
 
 # remove duplicated await SdkManager.sdk.init();
-RUN sed -i 's/await/\/\/await/g' bin/server_dev.dart
+RUN sed -i 's,await,//await,g' bin/server_dev.dart
 
 CMD []
 
