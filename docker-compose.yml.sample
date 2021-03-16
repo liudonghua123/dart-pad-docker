@@ -22,11 +22,8 @@ services:
       - nginx-proxy
     ports:
       - "8082"
-    volumes:
-      - ./dart-services:/dart-services
     environment:
       - VIRTUAL_HOST=dart-services.api.ynu.edu.cn
-    #entrypoint: bash -c "cd /dart-services && pub get && dart bin/server_dev.dart --port 8082"
 
 networks:
   nginx-proxy:
