@@ -44,7 +44,7 @@ services:
     volumes:
       - ./dart-services:/dart-services
     environment:
-      - VIRTUAL_HOST=<dart-pad-back-end-host-or-domain>\
+      - VIRTUAL_HOST=<dart-pad-back-end-host-or-domain>
 
 networks:
   nginx-proxy:
@@ -53,10 +53,12 @@ networks:
 
 ```
 
+**Updated: You can use standalone version of dart-pad NOW, see `docker-compose-standalone.yml.sample` for more details. In this way, you can only expose ONE endpoint.**
+
 ## Next work
 
 - [x] Add README.md for documentation.
-- [ ] Rewrite to only expose ONE endpoint.
+- [x] Rewrite to only expose ONE endpoint.
 
 ## License
 
