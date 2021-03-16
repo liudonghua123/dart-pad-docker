@@ -1,0 +1,15 @@
+FROM liudonghua123/dart-pad AS builder
+RUN sed -i 's,https://v1.api.dartpad.dev/,/,g' /dart-pad/lib/services/common.dart
+RUN sed -i 's,https://nullsafety.api.dartpad.dev/,/,g' /dart-pad/lib/services/common.dart
+# check
+RUN cat /dart-pad/lib/services/common.dart
+# rebuild the front end files
+RUN grind build
+# check
+RUN ls -l /dart-pad/
+RUN ls -l /dart-pad/build/
+RUN grep -rl -E "https://nullsafety.api.dartpad.dev/|https://v1.api.dartpad.dev/" /dart-pad/build/ ; true
+
+FROM nginx
+COPY --from=builder /dart-pad/build /usr/share/nginx/html
+COPY dart-pad.conf /etc/nginx/conf.d/

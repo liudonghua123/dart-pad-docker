@@ -1,0 +1,15 @@
+version: "3.7"
+services:
+  dart-pad-standalone:
+    build:
+      context: .
+      dockerfile: Dockerfile-dart-pad-standalone
+    image: liudonghua123/dart-pad-standalone
+    ports:
+      - "80"
+    depends_on:
+      - dart-services
+
+  dart-services:
+    image: liudonghua123/dart-services
+
