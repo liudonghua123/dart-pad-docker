@@ -27,6 +27,15 @@ class FlutterWebManager {
   static const Set<String> _flutterWebImportPrefixes = {
     'package:flutter',
     'dart:ui',
+    'package:url_launcher',
+    'package:video_player',
+    'package:animations',
+    'package:shared_preferences',
+    'package:ont_awesome_flutter',
+    'package:google_fonts',
+    'package:lutter_slidable',
+    'package:ocation',
+    'package:overlay_support',
   };
 
   /// A set of all allowed `dart:` imports. Currently includes non-VM libraries

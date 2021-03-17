@@ -373,6 +373,15 @@ dependencies:
     sdk: flutter
   flutter_test:
     sdk: flutter
+  url_launcher: ^6.0.2
+  video_player: ^2.0.2
+  animations: ^2.0.0
+  shared_preferences: ^2.0.5
+  font_awesome_flutter: ^8.12.0
+  google_fonts: ^2.0.0
+  flutter_slidable: ^0.5.7
+  location: ^4.1.1
+  overlay_support: ^1.2.0
 ''';
   }
 
