@@ -82,11 +82,16 @@ networks:
       name: nginx-proxy-default
 ```
 
+**Updated: You can use extended version of dart-services which support customize the default installed packages for dart/flutter NOW. Just ONLY replace `liudonghua123/dart-services` with `liudonghua123/dart-services-extended`. You can see `dockerfiles/Dockerfile-services-extended` how I did it. And you can modified the your customized default packages according to [make flutter example change](https://github.com/liudonghua123/dart-pad-docker/commit/b6f562a6dadf106292adedf3e1c6b2df7e24bb7c) commit.**
+
+![snapshots](snapshots.png)
+
 ## Next work
 
 - [x] Add README.md for documentation.
 - [x] Rewrite to only expose ONE endpoint.
-- [ ] Customize the default installed packages for dart/flutter.
+- [x] Customize the default installed packages for dart/flutter.
+- [ ] Improve the customization default packages process.
 
 ## License
 
