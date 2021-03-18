@@ -1,0 +1,7 @@
+FROM liudonghua123/dart-services
+
+# copy patched files
+COPY overwrites/ /
+
+# re-generate project template files, including run `flutter pub get` or `pub get`
+RUN grind build-project-templates
