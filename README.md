@@ -22,7 +22,7 @@ services:
   dart-pad:
     build:
       context: .
-      dockerfile: Dockerfile-dart-pad
+      dockerfile: dockerfiles/Dockerfile-dart-pad
     image: liudonghua123/dart-pad
     networks:
       - nginx-proxy
@@ -33,7 +33,7 @@ services:
   dart-services:
     build:
       context: .
-      dockerfile: Dockerfile-dart-services
+      dockerfile: dockerfiles/Dockerfile-dart-services
     image: liudonghua123/dart-services
     networks:
       - nginx-proxy
@@ -62,7 +62,7 @@ services:
   dart-pad-standalone:
     build:
       context: .
-      dockerfile: Dockerfile-dart-pad-standalone
+      dockerfile: dockerfiles/Dockerfile-dart-pad-standalone
     image: liudonghua123/dart-pad-standalone
     environment:
       - VIRTUAL_HOST=<dart-pad-host-or-domain>

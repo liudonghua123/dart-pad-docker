@@ -3,7 +3,7 @@ services:
   dart-pad-standalone:
     build:
       context: .
-      dockerfile: Dockerfile-dart-pad-standalone
+      dockerfile: dockerfiles/Dockerfile-dart-pad-standalone
     image: liudonghua123/dart-pad-standalone
     ports:
       - "80"
